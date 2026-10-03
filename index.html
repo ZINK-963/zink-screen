@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ZINK Screen — سینما، سریال و کنسرت</title>
+    <meta name="theme-color" content="#0b0b0f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- ================= TOP LOADER ================= -->
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="reel"><i class="ph ph-film-reel"></i></div>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <button class="icon-btn drawer-trigger" id="openDrawer" aria-label="باز کردن منو">
+          <i class="ph ph-list"></i>
+        </button>
+
+        <a class="brand" href="#" data-nav="home" aria-label="ZINK Screen">
+          <i class="ph-fill ph-ticket brand-mark"></i>
+          <span class="brand-word">ZINK<em>Screen</em></span>
+        </a>
+
+        <nav class="main-nav" id="mainNav">
+          <a class="nav-link is-active" href="#" data-nav="home">خانه</a>
+          <a class="nav-link" href="#" data-nav="movies">فیلم‌ها</a>
+          <a class="nav-link" href="#" data-nav="series">سریال‌ها</a>
+          <a class="nav-link" href="#" data-nav="music">موزیک و کنسرت</a>
+          <a class="nav-link" href="#" data-nav="top">پرامتیازترین‌ها</a>
+          <a class="nav-link" href="#" data-nav="live">صدا و سیمای ایران<span class="live-dot"></span></a>
+        </nav>
+
+        <div class="header-tools">
+          <button class="icon-btn" id="openSearch" aria-label="جستجو"><i class="ph ph-magnifying-glass"></i></button>
+          <button class="icon-btn" id="openMyList" aria-label="لیست پخش من"><i class="ph ph-bookmark-simple"></i></button>
+          <button class="icon-btn avatar-btn" id="openAccount" aria-label="حساب کاربری">
+            <span class="avatar-glyph">ز</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= SEARCH OVERLAY ================= -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-shell">
+        <div class="search-box">
+          <i class="ph ph-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="جستجوی عنوان، ژانر، بازیگر یا کشور…"
+            autocomplete="off"
+          />
+          <button id="closeSearch" aria-label="بستن جستجو"><i class="ph ph-x"></i></button>
+        </div>
+        <div class="search-hints" id="searchHints"></div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <!-- ================= SIDEBAR / DRAWER ================= -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <i class="ph-fill ph-ticket brand-mark"></i>
+        <span>ZINK<em>Screen</em></span>
+        <button class="icon-btn drawer-close" id="closeDrawer" aria-label="بستن منو"><i class="ph ph-x"></i></button>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-label">مرور</p>
+        <a class="side-link is-active" href="#" data-filter="home"><i class="ph ph-house"></i><span>خانه</span></a>
+        <a class="side-link" href="#" data-filter="genre"><i class="ph ph-mask-happy"></i><span>ژانرها</span></a>
+        <a class="side-link" href="#" data-filter="year"><i class="ph ph-calendar-blank"></i><span>سال انتشار</span></a>
+        <a class="side-link" href="#" data-filter="rating"><i class="ph ph-star"></i><span>پرامتیازترین‌ها</span></a>
+        <a class="side-link" href="#" data-filter="country"><i class="ph ph-globe-hemisphere-west"></i><span>کشور سازنده</span></a>
+        <a class="side-link" href="#" data-filter="type"><i class="ph ph-film-slate"></i><span>نوع محتوا</span></a>
+        <p class="sidebar-label">شخصی</p>
+        <a class="side-link" href="#" data-filter="history"><i class="ph ph-clock-counter-clockwise"></i><span>تاریخچه تماشا</span></a>
+        <a class="side-link" href="#" data-filter="playlist"><i class="ph ph-bookmark-simple"></i><span>لیست پخش من</span></a>
+        <a class="side-link" href="#" data-filter="ratings"><i class="ph ph-star-half"></i><span>امتیازهای من</span></a>
+        <p class="sidebar-label">حساب</p>
+        <a class="side-link" href="#" data-filter="settings"><i class="ph ph-gear"></i><span>تنظیمات</span></a>
+        <a class="side-link" href="#" data-filter="logout"><i class="ph ph-power"></i><span>خروج</span></a>
+      </nav>
+      <div class="sidebar-foot">
+        <i class="ph ph-wifi-high"></i>
+        <span>کیفیت پخش: خودکار</span>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+    <div class="page-shell">
+      <main class="main-content">
+        <section class="hero" id="heroBanner">
+          <div class="hero-slides" id="slides"></div>
+          <div class="hero-fade-x"></div>
+          <div class="hero-fade-y"></div>
+          <div class="hero-grain"></div>
+
+          <div class="hero-body">
+            <div class="hero-meta-row">
+              <span class="chip chip-type" id="showType">سریال</span>
+              <span class="chip chip-ghost"><i class="ph ph-eye"></i><b id="showViews">—</b> بازدید</span>
+              <span class="ticket-badge" id="showRatingBadge">
+                <i class="ph-fill ph-star"></i><b id="showRating">—</b>
+              </span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="hero-title-en" id="showTitleEn">در حال بارگذاری…</span>
+              <span class="hero-title-fa" id="showTitleFa"></span>
+            </h1>
+
+            <div class="hero-facts">
+              <span id="showGenres">—</span>
+              <span class="dot-sep">•</span>
+              <span id="showCountry">—</span>
+              <span class="dot-sep">•</span>
+              <span id="showYears">—</span>
+            </div>
+
+            <p class="hero-desc" id="showDescription"></p>
+
+            <div class="hero-actions">
+              <a href="#" class="btn btn-primary" id="heroWatchBtn"><i class="ph-fill ph-play"></i> تماشا کنید</a>
+              <a href="#" class="btn btn-ghost" id="heroListBtn"><i class="ph ph-plus"></i> افزودن به لیست</a>
+            </div>
+          </div>
+
+          <div class="hero-nav">
+            <button class="hero-arrow" id="prevBanner" aria-label="اسلاید قبلی"><i class="ph ph-caret-right"></i></button>
+            <button class="hero-arrow" id="nextBanner" aria-label="اسلاید بعدی"><i class="ph ph-caret-left"></i></button>
+          </div>
+
+          <div class="hero-dots" id="bannerCount" aria-label="انتخاب اسلاید"></div>
+        </section>
+
+        <section class="quick-access">
+          <a href="#" class="quick-card" data-quick="popular">
+            <span class="quick-icon"><i class="ph ph-fire"></i></span>
+            <span class="quick-text"><b>محبوب‌ترین‌ها</b><em>ترندهای این هفته</em></span>
+          </a>
+          <a href="#" class="quick-card" data-quick="new">
+            <span class="quick-icon"><i class="ph ph-sparkle"></i></span>
+            <span class="quick-text"><b>تازه اکران‌شده</b><em>جدیدترین افزوده‌ها</em></span>
+          </a>
+          <a href="#" class="quick-card" data-quick="music">
+            <span class="quick-icon"><i class="ph ph-music-note"></i></span>
+            <span class="quick-text"><b>موزیک و کنسرت</b><em>اجرای زنده</em></span>
+          </a>
+          <a href="#" class="quick-card" data-quick="mylist">
+            <span class="quick-icon"><i class="ph ph-bookmark-simple"></i></span>
+            <span class="quick-text"><b>لیست پخش من</b><em>ذخیره‌شده‌های شما</em></span>
+          </a>
+        </section>
+
+        <div id="rowsContainer"></div>
+
+        <section class="catalog-section hidden" id="catalogSection">
+          <div class="section-head catalog-head">
+            <div>
+              <span class="eyebrow">کاتالوگ</span>
+              <h2 id="catalogTitle">همه محتوا</h2>
+              <p class="catalog-count" id="catalogCount"></p>
+            </div>
+            <button id="closeCatalog" class="btn btn-ghost btn-sm">
+              بستن <i class="ph ph-x"></i>
+            </button>
+          </div>
+          <div class="catalog-filters" id="catalogFilters"></div>
+          <div class="movie-grid" id="catalogGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= MOBILE TAB BAR ================= -->
+    <nav class="tab-bar" id="tabBar">
+      <a href="#" class="tab-item is-active" data-tab="home"><i class="ph ph-house"></i><span>خانه</span></a>
+      <a href="#" class="tab-item" data-tab="search"><i class="ph ph-magnifying-glass"></i><span>جستجو</span></a>
+      <a href="#" class="tab-item" data-tab="catalog"><i class="ph ph-squares-four"></i><span>کاتالوگ</span></a>
+      <a href="#" class="tab-item" data-tab="playlist"><i class="ph ph-bookmark-simple"></i><span>لیست من</span></a>
+      <a href="#" class="tab-item" data-tab="menu"><i class="ph ph-list"></i><span>منو</span></a>
+    </nav>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <i class="ph-fill ph-ticket brand-mark"></i>
+            <span>ZINK<em>Screen</em></span>
+            <p>پلتفرم پخش فیلم، سریال و اجرای زنده — هرجا، هر زمان.</p>
+          </div>
+          <div class="footer-cols">
+            <div class="footer-col">
+              <h5>ZINK Screen</h5>
+              <a href="#">درباره ما</a>
+              <a href="#">فرصت‌های شغلی</a>
+              <a href="#">اطلاع‌رسانی</a>
+              <a href="#">مطبوعات</a>
+            </div>
+            <div class="footer-col">
+              <h5>پشتیبانی</h5>
+              <a href="#">مرکز راهنمایی</a>
+              <a href="#">تماس با ما</a>
+              <a href="#">سوالات متداول</a>
+              <a href="#">وضعیت سرویس</a>
+            </div>
+            <div class="footer-col">
+              <h5>قوانین</h5>
+              <a href="#">حریم خصوصی</a>
+              <a href="#">شرایط استفاده</a>
+              <a href="#">تنظیمات کوکی</a>
+              <a href="#">اطلاعات شرکتی</a>
+            </div>
+            <div class="footer-col">
+              <h5>شبکه‌های اجتماعی</h5>
+              <div class="footer-social">
+                <a href="#" aria-label="اینستاگرام"><i class="ph ph-instagram-logo"></i></a>
+                <a href="#" aria-label="تلگرام"><i class="ph ph-telegram-logo"></i></a>
+                <a href="#" aria-label="یوتیوب"><i class="ph ph-youtube-logo"></i></a>
+                <a href="#" aria-label="توییتر"><i class="ph ph-x-logo"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© تمامی حقوق برای ZINK Screen محفوظ است.</p>
+          <p class="footer-lang"><i class="ph ph-translate"></i> فارسی</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ================= WATCH PAGE ================= -->
+    <div class="watch-page" id="watchPage">
+      <div class="watch-scroll">
+        <div class="watch-media" id="watchMedia">
+          <div class="watch-bg" id="watchBg"></div>
+          <div class="watch-vignette"></div>
+          <div class="hero-grain"></div>
+          <button class="watch-close" id="watchClose" aria-label="بستن پخش"><i class="ph ph-x"></i></button>
+          <div class="watch-media-info">
+            <div class="hero-meta-row">
+              <span class="chip chip-type" id="watchType">—</span>
+              <span class="chip chip-ghost"><i class="ph ph-eye"></i><b id="watchViews">—</b> بازدید</span>
+              <span class="ticket-badge"><i class="ph-fill ph-star"></i><b id="watchRating">—</b></span>
+            </div>
+            <h1 class="hero-title">
+              <span class="hero-title-en" id="watchTitleEn">—</span>
+              <span class="hero-title-fa" id="watchTitleFa"></span>
+            </h1>
+          </div>
+        </div>
+
+        <div class="watch-content">
+          <div class="watch-content-grid">
+            <div class="watch-primary">
+              <div class="hero-facts" id="watchFactsRow">
+                <span id="watchGenres">—</span>
+                <span class="dot-sep">•</span>
+                <span id="watchCountry">—</span>
+                <span class="dot-sep">•</span>
+                <span id="watchYears">—</span>
+              </div>
+              <p class="hero-desc" id="watchDescription">—</p>
+              <div class="hero-actions">
+                <a href="#" class="btn btn-primary" id="watchPlayBtn"><i class="ph-fill ph-play"></i> پخش</a>
+                <a href="#" id="watchListBtn" class="btn btn-ghost"><i class="ph ph-plus"></i> افزودن به لیست</a>
+              </div>
+            </div>
+            <div class="rate-widget">
+              <span>امتیاز شما به این اثر</span>
+              <div class="rate-stars" id="rateStars"></div>
+              <p class="rate-value" id="rateValue">هنوز امتیاز نداده‌اید</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="watch-related">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">پیشنهاد ما</span>
+              <h2>این‌ها را هم ببینید</h2>
+            </div>
+          </div>
+          <div class="movie-row" id="watchRelated"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
